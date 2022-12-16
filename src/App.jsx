@@ -1,13 +1,10 @@
-import CategoryCard from "./components/CategoryCard";
 import { categories } from "./constants";
+import Directory from "./components/Directory"
+import "./categories.scss";
 
 const App = () => {
   return (
-    <div className="categories-container">
-      {categories.map(({ id, title }) => (
-        <CategoryCard key={id} title={title} />
-      ))}
-    </div>
+    <Directory categories={categories} />
   );
 }
 
