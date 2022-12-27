@@ -3,9 +3,10 @@ import Button from "./Button";
 import { useState } from "react";
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, createAuthUserWithEmailAndPassword } from "../utils/firebase";
 import "./SignInForm.scss";
+import { defaultSignInFormFields } from "../constants";
 
 const SignInForm = () => {
-  const [ formFields, setFormFields ] = useState({email: '', password: ''});
+  const [ formFields, setFormFields ] = useState(defaultSignInFormFields);
   const { email, password } = formFields;
 
   const handleChange = (e) => {
@@ -14,7 +15,7 @@ const SignInForm = () => {
   }
 
   const resetFormFields = () => {
-    setFormFields({email: '', password: ''});
+    setFormFields(defaultSignInFormFields);
   }
 
   const handleSubmit = async (e) => {
