@@ -2,7 +2,7 @@ import FormInput from "./FormInput";
 import Button from "./Button";
 import { useState } from "react";
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, createAuthUserWithEmailAndPassword } from "../utils/firebase";
-import "./SignInForm.scss";
+import "./signInForm.scss";
 import { defaultSignInFormFields } from "../constants";
 
 const SignInForm = () => {

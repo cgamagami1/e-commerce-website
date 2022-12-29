@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../utils/firebase";
 import FormInput from "./FormInput";
 import Button from "./Button";
-import "./SignUpForm.scss";
+import "./signUpForm.scss";
 import { defaultSignUpFormFields } from "../constants";
 
 const SignUpForm = () => {
