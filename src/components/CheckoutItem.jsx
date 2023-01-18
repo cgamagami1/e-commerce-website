@@ -1,14 +1,16 @@
-import { useContext } from "react";
-import { CartContext } from "../context/Cart";
 import "./checkout-item.scss";
+import { addItemToCart, removeItemFromCart, clearItemFromCart } from "../store/cart/cart-action";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../store/cart/cart-selector";
 
 const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
-  const { addItemToCart, removeItemFromCart, clearItemFromCart } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
 
-  const clearItemHandler = () => clearItemFromCart(cartItem);
-  const addItemHandler = () => addItemToCart(cartItem);
-  const removeItemHandler = () => removeItemFromCart(cartItem);
+  const handleClearItem = () => dispatch(clearItemFromCart(cartItems, cartItem));
+  const handleAddItem = () => dispatch(addItemToCart(cartItems, cartItem));
+  const handleRemoveItem = () => dispatch(removeItemFromCart(cartItems, cartItem));
 
   return (
     <div className="checkout-item-container">
@@ -19,14 +21,14 @@ const CheckoutItem = ({ cartItem }) => {
       <span className="name">{name}</span>
 
       <span className="quantity">
-        <div className="arrow prevent-select" onClick={removeItemHandler}>&#10094;</div>
+        <div className="arrow prevent-select" onClick={handleRemoveItem}>&#10094;</div>
         <span className="value">{quantity}</span>
-        <div className="arrow prevent-select" onClick={addItemHandler}>&#10095;</div>
+        <div className="arrow prevent-select" onClick={handleAddItem}>&#10095;</div>
       </span>
 
       <span className="price">${price}</span>
 
-      <div className="remove-button prevent-select" onClick={clearItemHandler}>&#10005;</div>
+      <div className="remove-button prevent-select" onClick={handleClearItem}>&#10005;</div>
     </div>
   );
 }
